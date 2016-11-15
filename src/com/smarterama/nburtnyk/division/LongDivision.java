@@ -3,10 +3,10 @@ package com.smarterama.nburtnyk.division;
 import java.util.List;
 import java.util.ArrayList;
 
-public class Division {
-	
-	private String repeat(String str, int times) {
-		return new String(new char[times]).replace("\0", str);
+public class LongDivision {
+
+	private String repeatString(String s, int n) {
+		return new String(new char[n]).replace("\0", s);
 	}
 
 	private List<Integer> splitToDigits(int x1) {
@@ -19,8 +19,7 @@ public class Division {
 	}
 
 	private int findLenth(int n) {
-		n = String.valueOf(n).length();
-		return n;
+		return String.valueOf(n).length();
 	}
 
 	private int[] divideRule(int a, int b) {
@@ -43,23 +42,20 @@ public class Division {
 		return j;
 	}
 
-	 private String toDisplay(int j, int partOrX1, int x2) {
+	private String toDisplay(int j, int partOrX1, int x2) {
 		int numOf2ndRepeat = j + 1 + findLenth(partOrX1) - findLenth(divideRule(partOrX1, x2)[1]);
-		String type = repeat(" ", j) + "-" + partOrX1 + newline()
-				+ repeat(" ", numOf2ndRepeat) + divideRule(partOrX1, x2)[1]
-				+ newline() + repeat(" ", numOf2ndRepeat)
-				+ repeat("-", findLenth(divideRule(partOrX1, x2)[1]) + 1);
+		String type = repeatString(" ", j) + "-" + partOrX1 + "\n"
+				+ repeatString(" ", numOf2ndRepeat)
+				+ divideRule(partOrX1, x2)[1] + "\n"
+				+ repeatString(" ", numOf2ndRepeat)
+				+ repeatString("-", findLenth(divideRule(partOrX1, x2)[1]) + 1);
 		return type;
 	}
 
-	private String newline() {
-		return System.getProperty("line.separator");
-	}
-
-	private static int outputResult(int numerator, int denominator) {
+	private int outputResult(int numerator, int denominator) {
 		int den = denominator;
 		if (numerator % denominator == 0) {
-			System.out.print(numerator / denominator);
+			System.out.println(numerator / denominator);
 			return den;
 		}
 		int s = denominator % 2;
@@ -85,19 +81,15 @@ public class Division {
 			}
 			periodLenth++;
 		}
-		
 		int beforePeriodLenth;
-		
 		if (l1 > l) {
 			beforePeriodLenth = l1;
 		} else {
 			beforePeriodLenth = l;
 		}
 		denominator = den;
-		
 		System.out.print(numerator / denominator + ".");
 		numerator = numerator % denominator;
-		
 		for (int i = 0; i < beforePeriodLenth; i++) {
 			System.out.print((numerator * 10) / denominator);
 			numerator = (numerator * 10) % denominator;
@@ -108,27 +100,20 @@ public class Division {
 				System.out.print((numerator * 10) / denominator);
 				numerator = (numerator * 10) % denominator;
 			}
-			System.out.print(")");
+			System.out.println(")");
 		}
 		return periodLenth;
 	}
-	
 
-	public void start(String digits) {     //to do (rename method)
-		//System.out.print(digits);
-		//System.out.print(newline());
-		
-		String[] rowNumbers = digits.split("/"); // to do
-		
+	public void start(String str) {
+		String[] rowNumbers = str.split("/");
 		int x1 = Integer.parseInt(rowNumbers[0]);
 		int x2 = Integer.parseInt(rowNumbers[1]);
 		int j, p;
 		p = j = 0;
-		
-		System.out.print(" " + "|");
-		int outputResult = outputResult(x1, x2);
-		System.out.print(newline());
-		
+		System.out.print(" " + x1 + "|" + x2);
+		int g = outputResult(x1, x2);
+
 		if (x1 >= x2) {
 			String dividend = "";
 			for (int i = splitToDigits(x1).size() - 1; i >= 0; i--) {
@@ -145,7 +130,7 @@ public class Division {
 			}
 		}
 		if (x1 < x2) {
-			while (x1 != divideRule(x1, x2)[1] && p < outputResult + 5) {
+			while (x1 != divideRule(x1, x2)[1] && p < g + 5) {
 				if (divideRule(x1, x2)[0] > 0) {
 					System.out.println(toDisplay(j, x1, x2));
 					j = findSpaces(x1, x2, j);
@@ -158,7 +143,15 @@ public class Division {
 				p++;
 			}
 		}
-	}
-}
 
+	}
+
+}
+// public void start(int x1, int x2){
+//
+// System.out.println(" " + x1 + "|" + x2);
+// System.out.println("-  " + "|" + "--------");
+// System.out.println("   " + "|" + (x1/x2));
+//
+// }
 
