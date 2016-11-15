@@ -105,14 +105,11 @@ public class LongDivision {
 		return periodLenth;
 	}
 
-	public void start(String str) {
-		String[] rowNumbers = str.split("/");
-		int x1 = Integer.parseInt(rowNumbers[0]);
-		int x2 = Integer.parseInt(rowNumbers[1]);
+	public void divide(int x1, int x2) {
 		int j, p;
 		p = j = 0;
-		System.out.print(" " + x1 + "|" + x2);
-		int g = outputResult(x1, x2);
+		System.out.print(" " + x1 + "|" + x2 + "\n " + x1 + "|");
+		int outputResult = outputResult(x1, x2);
 
 		if (x1 >= x2) {
 			String dividend = "";
@@ -130,7 +127,7 @@ public class LongDivision {
 			}
 		}
 		if (x1 < x2) {
-			while (x1 != divideRule(x1, x2)[1] && p < g + 5) {
+			while (x1 != divideRule(x1, x2)[1] && p < outputResult + 5) {
 				if (divideRule(x1, x2)[0] > 0) {
 					System.out.println(toDisplay(j, x1, x2));
 					j = findSpaces(x1, x2, j);
@@ -145,13 +142,4 @@ public class LongDivision {
 		}
 
 	}
-
 }
-// public void start(int x1, int x2){
-//
-// System.out.println(" " + x1 + "|" + x2);
-// System.out.println("-  " + "|" + "--------");
-// System.out.println("   " + "|" + (x1/x2));
-//
-// }
-

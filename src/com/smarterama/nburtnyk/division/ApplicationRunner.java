@@ -4,7 +4,7 @@ public class ApplicationRunner {
 
 	public static void main(String[] args) {
 		LongDivision division = new LongDivision();
-		division.start("40/3");
+		division.divide(576, 3);
 		
 	}
 }
