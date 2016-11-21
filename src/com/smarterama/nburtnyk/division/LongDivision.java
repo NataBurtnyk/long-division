@@ -1,9 +1,20 @@
 package com.smarterama.nburtnyk.division;
 
-import java.util.List;
 import java.util.ArrayList;
+import java.util.List;
+
 
 public class LongDivision {
+	
+	protected int dividend, divisor;
+	protected String result;
+	
+	public LongDivision(int dividend, int divisor) {
+		this.dividend = dividend;
+		this.divisor = divisor;
+		this.result = "";
+	}
+
 	private String repeatString(String s, int n) {
 		return new String(new char[n]).replace("\0", s);
 	}
