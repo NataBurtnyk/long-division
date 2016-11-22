@@ -31,16 +31,19 @@ public class DivisionStep {
 	private int getDeduction(int dividend, int divisor) {
 		int numberOfDeductionDigits = getNumberLength(divisor);
 		int deduction = getFirstNDigits(dividend, numberOfDeductionDigits++);
-		while (deduction < divisor)
+		while (deduction < divisor) {
 			deduction = getFirstNDigits(dividend, numberOfDeductionDigits++);
+		}
 		return deduction;
 	}
 	
 	private int getNewDividend(int difference, String dividendTail) {
-		if (dividendTail.length() == 0)
+		if (dividendTail.length() == 0) {
 			return difference;
-		if (difference == 0)
+		}
+		if (difference == 0) {
 			return Integer.parseInt(dividendTail);
+		}
 		return Integer.parseInt(Integer.toString(difference) + dividendTail);
 	}
 	
