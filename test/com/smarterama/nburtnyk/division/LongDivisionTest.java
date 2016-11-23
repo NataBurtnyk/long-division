@@ -102,5 +102,20 @@ public class LongDivisionTest {
 		
 	}
 	
+	@Test
+	public void testConditionWhenDivisorLargerThanDividend() {
+		LongDivision longDivision = new LongDivision(8, 20);
+		List<String> outputStrings = longDivision.buildOutputStrings();
+		String[] expectedOutput = new String[]{
+ 				"8 |20",
+ 				"  |--",
+ 				"  |0", };
+		
+		for (int i = 0; i < expectedOutput.length; i++) {
+ 			assertEquals(expectedOutput[i], outputStrings.get(i));	
+		}
+		
+	}
+	
 	
 }
