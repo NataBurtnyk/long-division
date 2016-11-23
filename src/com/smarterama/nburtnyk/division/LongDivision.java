@@ -34,7 +34,7 @@ public class LongDivision {
 	
 		boolean firstStep = true;
 		for (DivisionStep step : steps) {
-			List<String> stepOutput = step.getOutput();
+			List<String> stepOutput = step.shapeOutput();
 			if (!firstStep) {
 				String shiftString = repeatString(" ", shift);
 				for (String line : stepOutput) {
@@ -99,7 +99,7 @@ public class LongDivision {
 		List<String> firstStepOutput;
 		String[] lines = { "", "", "" };
 		if (steps.size() > 0) {
-			firstStepOutput = steps.get(0).getOutput();
+			firstStepOutput = steps.get(0).shapeOutput();
 			for (int i = 0; i < 3; i++) {
 				lines[i] = firstStepOutput.get(i);
 			}
@@ -120,7 +120,7 @@ public class LongDivision {
 			output.add(lines[i]);
 		}
 		if (steps.size() > 0) {
-			firstStepOutput = steps.get(0).getOutput();
+			firstStepOutput = steps.get(0).shapeOutput();
 			output.add(firstStepOutput.get(3));
 		}
 		return output;

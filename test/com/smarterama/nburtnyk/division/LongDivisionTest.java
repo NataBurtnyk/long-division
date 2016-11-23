@@ -87,5 +87,20 @@ public class LongDivisionTest {
 		
 	}
 	
+	@Test
+	public void testConditionWithDividendZero() {
+		LongDivision longDivision = new LongDivision(0, 8);
+		List<String> outputStrings = longDivision.buildOutputStrings();
+		String[] expectedOutput = new String[]{
+ 				"0 |8",
+ 				"  |-",
+ 				"  |0", };
+		
+		for (int i = 0; i < expectedOutput.length; i++) {
+ 			assertEquals(expectedOutput[i], outputStrings.get(i));	
+		}
+		
+	}
+	
 	
 }

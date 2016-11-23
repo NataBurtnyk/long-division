@@ -20,24 +20,24 @@ public class DivisionStep {
 	}
 	
 	private void countStepValues() {
-		deduction = getDeduction(dividend, divisor);
-		String dividendTail = Integer.toString(dividend).substring(getNumberLength(deduction));
+		deduction = findDeduction(dividend, divisor);
+		String dividendTail = Integer.toString(dividend).substring(findNumberLength(deduction));
 		resultDigit = deduction / divisor;
 		minuend = divisor * resultDigit;
 		difference = deduction - minuend;
-		newDividend = getNewDividend(difference, dividendTail);
+		newDividend = findNewDividend(difference, dividendTail);
 	}
 	
-	private int getDeduction(int dividend, int divisor) {
-		int numberOfDeductionDigits = getNumberLength(divisor);
-		int deduction = getFirstNDigits(dividend, numberOfDeductionDigits++);
+	private int findDeduction(int dividend, int divisor) {
+		int numberOfDeductionDigits = findNumberLength(divisor);
+		int deduction = findFirstNDigits(dividend, numberOfDeductionDigits++);
 		while (deduction < divisor) {
-			deduction = getFirstNDigits(dividend, numberOfDeductionDigits++);
+			deduction = findFirstNDigits(dividend, numberOfDeductionDigits++);
 		}
 		return deduction;
 	}
 	
-	private int getNewDividend(int difference, String dividendTail) {
+	private int findNewDividend(int difference, String dividendTail) {
 		if (dividendTail.length() == 0) {
 			return difference;
 		}
@@ -47,19 +47,19 @@ public class DivisionStep {
 		return Integer.parseInt(Integer.toString(difference) + dividendTail);
 	}
 	
-	private int getNumberLength(int number) {
+	private int findNumberLength(int number) {
 		return Integer.toString(number).length();
 	}
 	
-	private int getFirstNDigits(int number, int n) {
+	private int findFirstNDigits(int number, int n) {
 		String sNumber = Integer.toString(number);
 		String upToNDigits = sNumber.substring(0, Math.min(sNumber.length(), n));
 		return Integer.parseInt(upToNDigits);
 	}
 	
-	public List<String> getOutput() {
+	public List<String> shapeOutput() {
 		List<String> output = new ArrayList<String>();
-		int length = getNumberLength(deduction);
+		int length = findNumberLength(deduction);
 		output.add(" " + Integer.toString(deduction));
 		output.add("-");
 		output.add(" " + String.format("%1$" + length + "s", minuend));
