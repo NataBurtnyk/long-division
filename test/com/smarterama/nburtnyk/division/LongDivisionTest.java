@@ -21,7 +21,7 @@ public class LongDivisionTest {
 	}
 	
 	@Test
-	public void testConditionDigits() {
+	public void testConditionWithDigits() {
 		LongDivision longDivision = new LongDivision(36, 3);
 		List<String> outputStrings = longDivision.buildOutputStrings();
 		String[] expectedOutput = new String[]{
@@ -55,6 +55,31 @@ public class LongDivisionTest {
  				" 28",
  				" --",
  				"  0"};
+		
+		for (int i = 0; i < expectedOutput.length; i++) {
+ 			assertEquals(expectedOutput[i], outputStrings.get(i));	
+		}
+		
+	}
+	
+	@Test
+	public void testConditionWithNegativeDigits() {
+		LongDivision longDivision = new LongDivision(-968, -4);
+		List<String> outputStrings = longDivision.buildOutputStrings();
+		String[] expectedOutput = new String[]{
+ 				"-968 |-4",
+ 				"-    |---",
+ 				" 8   |242",
+ 				" -",
+ 				" 16",
+ 				"-",
+ 				" 16",
+ 				" --",
+ 				"   8",
+ 				"  -",
+ 				"   8",
+ 				"   -",
+ 				"   0"};
 		
 		for (int i = 0; i < expectedOutput.length; i++) {
  			assertEquals(expectedOutput[i], outputStrings.get(i));	
