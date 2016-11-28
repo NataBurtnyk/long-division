@@ -96,32 +96,33 @@ public class LongDivision {
 	
 	private List<String> buildOutputHeader(List<DivisionStep> steps) {
 		List<String> output = new ArrayList<String>();
+		int rowsOfHeader = 3;
 		List<String> firstStepOutput;
 		String[] lines = { "", "", "" };
 		if (steps.size() > 0) {
 			firstStepOutput = steps.get(0).shapeOutput();
-			for (int i = 0; i < 3; i++) {
+			for (int i = 0; i < rowsOfHeader; i++) {
 				lines[i] = firstStepOutput.get(i);
 			}
 		}
 		
 		lines[0] = (dividend > 0 && steps.size() > 0 ? " " : "") + Integer.toString(dividend);
-		int length = Math.max(lines[0].length(), lines[2].length()) + 1;
+		int lengthOfDividend = Math.max(lines[0].length(), lines[2].length()) + 1;
 		
-		for (int i = 0; i < 3; i++) {
-			lines[i] += repeatString(" ", length - lines[i].length()) + "|";
+		for (int i = 0; i < rowsOfHeader; i++) {
+			lines[i] += repeatString(" ", lengthOfDividend - lines[i].length()) + "|";
 		}
 		lines[0] += Integer.toString(divisor);
 		lines[2] += result;
-		length = Math.max(result.length(), Integer.toString(divisor).length());
-		lines[1] += repeatString("-", length);
+		lengthOfDividend = Math.max(result.length(), Integer.toString(divisor).length());
+		lines[1] += repeatString("-", lengthOfDividend);
 		
-		for (int i = 0; i < 3; i++) {
+		for (int i = 0; i < rowsOfHeader; i++) {
 			output.add(lines[i]);
 		}
 		if (steps.size() > 0) {
 			firstStepOutput = steps.get(0).shapeOutput();
-			output.add(firstStepOutput.get(3));
+			output.add(firstStepOutput.get(rowsOfHeader));
 		}
 		return output;
 	}
