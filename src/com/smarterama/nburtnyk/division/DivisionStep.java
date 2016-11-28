@@ -7,7 +7,7 @@ public class DivisionStep {
 	
 	private int dividend;
 	private int divisor;
-	private int resultDigit;
+	private int partResult;
 	private int deduction;
 	private int minuend;
 	private int difference;
@@ -22,8 +22,8 @@ public class DivisionStep {
 	private void countStepValues() {
 		deduction = findDeduction(dividend, divisor);
 		String dividendTail = Integer.toString(dividend).substring(findNumberLength(deduction));
-		resultDigit = deduction / divisor;
-		minuend = divisor * resultDigit;
+		partResult = deduction / divisor;
+		minuend = divisor * partResult;
 		difference = deduction - minuend;
 		newDividend = findNewDividend(difference, dividendTail);
 	}
@@ -67,8 +67,8 @@ public class DivisionStep {
 		return output;
 	}
 	
-	public String reciaveResultDigitAsString() {
-		return Integer.toString(resultDigit);
+	public String reciavePartResultAsString() {
+		return Integer.toString(partResult);
 	}
 	
 	public int getDeduction() {

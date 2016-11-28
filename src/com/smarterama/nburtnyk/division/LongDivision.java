@@ -10,7 +10,6 @@ public class LongDivision {
 	private String result;
 	
 	public LongDivision(int dividend, int divisor) {
-		checkDivisor(divisor);
 		this.dividend = dividend;
 		this.divisor = divisor;
 	}
@@ -21,13 +20,14 @@ public class LongDivision {
 		}
 	}
 	
-	public void divideWithOutput() {
-		for (String line : buildOutputStrings()) {
+	public void printDivisionSteps(List<String> divisionSteps) {
+		for (String line : divisionSteps) {
 			System.out.println(line);
 		}
 	}
 	
 	public List<String> buildOutputStrings() {
+		checkDivisor(divisor);
 		List<DivisionStep> steps = buildDivisionSteps();
 		List<String> output = buildOutputHeader(steps);
 		int shift = 0;
@@ -68,7 +68,7 @@ public class LongDivision {
 		return new String(new char[n]).replace("\0", s);
 	}
 	
-	protected List<DivisionStep> buildDivisionSteps() {
+	private List<DivisionStep> buildDivisionSteps() {
 		List<DivisionStep> divisionSteps = new ArrayList<DivisionStep>();
 		int currentDividend = Math.abs(dividend);
 		result = "";
@@ -76,7 +76,7 @@ public class LongDivision {
 		while (currentDividend >= Math.abs(divisor)) {
 			DivisionStep step = new DivisionStep(currentDividend, Math.abs(divisor));
 			currentDividend = step.getNewDividend();
-			result += step.reciaveResultDigitAsString();
+			result += step.reciavePartResultAsString();
 			divisionSteps.add(step);
 		}
 		if (result.length() > 0) {
@@ -90,39 +90,39 @@ public class LongDivision {
 		return divisionSteps;
 	}
 	
-	protected String findResultSign() {
+	private String findResultSign() {
 		return (dividend / divisor) < 0 ? "-": "";
 	}
 	
 	private List<String> buildOutputHeader(List<DivisionStep> steps) {
 		List<String> output = new ArrayList<String>();
-		int rowsOfHeader = 3;
+		int headerRows = 3;
 		List<String> firstStepOutput;
 		String[] lines = { "", "", "" };
 		if (steps.size() > 0) {
 			firstStepOutput = steps.get(0).shapeOutput();
-			for (int i = 0; i < rowsOfHeader; i++) {
+			for (int i = 0; i < headerRows; i++) {
 				lines[i] = firstStepOutput.get(i);
 			}
 		}
 		
 		lines[0] = (dividend > 0 && steps.size() > 0 ? " " : "") + Integer.toString(dividend);
-		int lengthOfDividend = Math.max(lines[0].length(), lines[2].length()) + 1;
+		int dividendLength = Math.max(lines[0].length(), lines[2].length()) + 1;
 		
-		for (int i = 0; i < rowsOfHeader; i++) {
-			lines[i] += repeatString(" ", lengthOfDividend - lines[i].length()) + "|";
+		for (int i = 0; i < headerRows; i++) {
+			lines[i] += repeatString(" ", dividendLength - lines[i].length()) + "|";
 		}
 		lines[0] += Integer.toString(divisor);
 		lines[2] += result;
-		lengthOfDividend = Math.max(result.length(), Integer.toString(divisor).length());
-		lines[1] += repeatString("-", lengthOfDividend);
+		dividendLength = Math.max(result.length(), Integer.toString(divisor).length());
+		lines[1] += repeatString("-", dividendLength);
 		
-		for (int i = 0; i < rowsOfHeader; i++) {
+		for (int i = 0; i < headerRows; i++) {
 			output.add(lines[i]);
 		}
 		if (steps.size() > 0) {
 			firstStepOutput = steps.get(0).shapeOutput();
-			output.add(firstStepOutput.get(rowsOfHeader));
+			output.add(firstStepOutput.get(headerRows));
 		}
 		return output;
 	}

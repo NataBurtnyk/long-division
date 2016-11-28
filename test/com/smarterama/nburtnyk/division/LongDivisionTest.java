@@ -17,7 +17,7 @@ public class LongDivisionTest {
 	public void testConditionWithDivisorZero() {
 		exception.expect(IllegalArgumentException.class);
 		exception.expectMessage("Divisor can not be 0");
-		new LongDivision(744, 0);
+		new LongDivision(744, 0).buildOutputStrings();
 	}
 	
 	@Test
