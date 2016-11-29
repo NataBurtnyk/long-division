@@ -25,7 +25,7 @@ public class DivisionStep {
 		partResult = deduction / divisor;
 		minuend = divisor * partResult;
 		difference = deduction - minuend;
-		newDividend = findNewDividend(difference, dividendTail);
+		newDividend = findNextDividend(difference, dividendTail);
 	}
 	
 	private int findDeduction(int dividend, int divisor) {
@@ -37,7 +37,7 @@ public class DivisionStep {
 		return deduction;
 	}
 	
-	private int findNewDividend(int difference, String dividendTail) {
+	private int findNextDividend(int difference, String dividendTail) {
 		if (dividendTail.length() == 0) {
 			return difference;
 		}
@@ -52,8 +52,8 @@ public class DivisionStep {
 	}
 	
 	private int findFirstNDigits(int number, int n) {
-		String sNumber = Integer.toString(number);
-		String upToNDigits = sNumber.substring(0, Math.min(sNumber.length(), n));
+		String stringNumber = Integer.toString(number);
+		String upToNDigits = stringNumber.substring(0, Math.min(stringNumber.length(), n));
 		return Integer.parseInt(upToNDigits);
 	}
 	

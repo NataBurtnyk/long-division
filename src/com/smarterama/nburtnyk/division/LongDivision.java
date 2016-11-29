@@ -20,7 +20,7 @@ public class LongDivision {
 		}
 	}
 	
-	public void printDivisionSteps(List<String> divisionSteps) {
+	public void print(List<String> divisionSteps) {
 		for (String line : divisionSteps) {
 			System.out.println(line);
 		}
