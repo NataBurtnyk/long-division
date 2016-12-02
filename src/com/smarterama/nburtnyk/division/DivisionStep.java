@@ -54,9 +54,10 @@ public class DivisionStep {
 	    }
 	
 	private int findFirstNDigits(int number, int n) {
-		String stringNumber = Integer.toString(number);
-		String upToNDigits = stringNumber.substring(0, Math.min(findNumberLength(number), n));
-		return Integer.parseInt(upToNDigits);
+		while(findNumberLength(number) != n){
+			number /= 10;
+		}
+		return number;
 	}
 	
 	public List<String> shapeOutput() {
