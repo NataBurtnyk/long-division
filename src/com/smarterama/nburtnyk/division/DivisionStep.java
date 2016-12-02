@@ -21,11 +21,10 @@ public class DivisionStep {
 	
 	private void countStepValues() {
 		deduction = findDeduction(dividend, divisor);
-		String dividendTail = Integer.toString(dividend).substring(findNumberLength(deduction));
 		partResult = deduction / divisor;
 		minuend = divisor * partResult;
 		difference = deduction - minuend;
-		newDividend = findNextDividend(difference, dividendTail);
+		newDividend = findNextDividend(dividend, partResult*divisor);
 	}
 	
 	private int findDeduction(int dividend, int divisor) {
@@ -37,38 +36,41 @@ public class DivisionStep {
 		return deduction;
 	}
 	
-	private int findNextDividend(int difference, String dividendTail) {
-		if (dividendTail.length() == 0) {
-			return difference;
+	private int findNextDividend(int dividend, int deduction) {
+		while(findNumberLength(dividend) != findNumberLength(deduction)){
+			deduction *=10;
 		}
-		if (difference == 0) {
-			return Integer.parseInt(dividendTail);
-		}
-		return Integer.parseInt(Integer.toString(difference) + dividendTail);
+		return dividend - deduction;
+
 	}
 	
 	private int findNumberLength(int number) {
-		return Integer.toString(number).length();
-	}
+		 int count = (number == 0) ? 1 : 0;
+	        while (number != 0) {
+	            count++;
+	            number /= 10;
+	        }
+	        return count;
+	    }
 	
 	private int findFirstNDigits(int number, int n) {
 		String stringNumber = Integer.toString(number);
-		String upToNDigits = stringNumber.substring(0, Math.min(stringNumber.length(), n));
+		String upToNDigits = stringNumber.substring(0, Math.min(findNumberLength(number), n));
 		return Integer.parseInt(upToNDigits);
 	}
 	
 	public List<String> shapeOutput() {
 		List<String> output = new ArrayList<String>();
 		int length = findNumberLength(deduction);
-		output.add(" " + Integer.toString(deduction));
+		output.add(" " + deduction);
 		output.add("-");
 		output.add(" " + String.format("%1$" + length + "s", minuend));
 		output.add(" " + new String(new char[length]).replace("\0", "-"));
 		return output;
 	}
 	
-	public String reciavePartResultAsString() {
-		return Integer.toString(partResult);
+	public int getPartResult() {
+		return partResult;
 	}
 	
 	public int getDeduction() {

@@ -25,7 +25,7 @@ public class LongDivision {
 			System.out.println(line);
 		}
 	}
-	
+		
 	public List<String> buildOutputStrings() {
 		checkDivisor(divisor);
 		List<DivisionStep> steps = buildDivisionSteps();
@@ -76,7 +76,7 @@ public class LongDivision {
 		while (currentDividend >= Math.abs(divisor)) {
 			DivisionStep step = new DivisionStep(currentDividend, Math.abs(divisor));
 			currentDividend = step.getNewDividend();
-			result += step.reciavePartResultAsString();
+			result += step.getPartResult();
 			divisionSteps.add(step);
 		}
 		if (result.length() > 0) {
