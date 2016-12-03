@@ -21,6 +21,39 @@ public class LongDivisionTest {
 	}
 	
 	@Test
+	public void testConditionWithDigitsLikeInTask() {
+		LongDivision longDivision = new LongDivision(78459, 4);
+		List<String> outputStrings = longDivision.buildOutputStrings();
+		String[] expectedOutput = new String[]{
+ 				" 78459 |4",
+ 				"-      |-----",
+ 				" 4     |19614",
+ 				" -",
+ 				" 38",
+ 				"-",
+ 				" 36",
+ 				" --",
+ 				"  24",
+ 				" -",
+ 				"  24",
+ 				"  --",
+ 				"    5",
+ 				"   -",
+ 				"    4",
+ 				"    -",
+ 				"    19",
+ 				"   -",
+ 				"    16",
+ 				"    --",
+ 				"     3"};
+		
+		for (int i = 0; i < expectedOutput.length; i++) {
+ 			assertEquals(expectedOutput[i], outputStrings.get(i));	
+		}
+		
+	}
+	
+	@Test
 	public void testConditionWithDigits() {
 		LongDivision longDivision = new LongDivision(36, 3);
 		List<String> outputStrings = longDivision.buildOutputStrings();
