@@ -24,7 +24,7 @@ public class DivisionStep {
 		partResult = deduction / divisor;
 		minuend = divisor * partResult;
 		difference = deduction - minuend;
-		newDividend = findNextDividend(dividend, partResult*divisor);
+		newDividend = findNextDividend(dividend, partResult * divisor);
 	}
 	
 	private int findDeduction(int dividend, int divisor) {
@@ -38,7 +38,7 @@ public class DivisionStep {
 	
 	private int findNextDividend(int dividend, int deduction) {
 		while(findNumberLength(dividend) != findNumberLength(deduction)){
-			deduction *=10;
+			deduction *= 10;
 		}
 		return dividend - deduction;
 
@@ -62,11 +62,11 @@ public class DivisionStep {
 	
 	public List<String> shapeOutput() {
 		List<String> output = new ArrayList<String>();
-		int length = findNumberLength(deduction);
+		int numberLength = findNumberLength(deduction);
 		output.add(" " + deduction);
 		output.add("-");
-		output.add(" " + String.format("%1$" + length + "s", minuend));
-		output.add(" " + new String(new char[length]).replace("\0", "-"));
+		output.add(" " + String.format("%1$" + numberLength + "s", minuend));
+		output.add(" " + new String(new char[numberLength]).replace("\0", "-"));
 		return output;
 	}
 	
@@ -86,4 +86,7 @@ public class DivisionStep {
 		return newDividend;
 	}
 
+	public int getMinuend() {
+		return minuend;
+	}
 }
