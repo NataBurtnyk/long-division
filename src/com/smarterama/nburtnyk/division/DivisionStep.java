@@ -7,7 +7,7 @@ public class DivisionStep {
 	
 	private int dividend;
 	private int divisor;
-	private int partResult;
+	private int OneDigitFromFraction;
 	private int deduction;
 	private int minuend;
 	private int difference;
@@ -21,10 +21,10 @@ public class DivisionStep {
 	
 	private void countStepValues() {
 		deduction = findDeduction(dividend, divisor);
-		partResult = deduction / divisor;
-		minuend = divisor * partResult;
+		OneDigitFromFraction = deduction / divisor;
+		minuend = divisor * OneDigitFromFraction;
 		difference = deduction - minuend;
-		newDividend = findNextDividend(dividend, partResult * divisor);
+		newDividend = findNextDividend(dividend, OneDigitFromFraction * divisor);
 	}
 	
 	private int findDeduction(int dividend, int divisor) {
@@ -70,8 +70,8 @@ public class DivisionStep {
 		return output;
 	}
 	
-	public int getPartResult() {
-		return partResult;
+	public int getOneDigitFromFraction() {
+		return OneDigitFromFraction;
 	}
 	
 	public int getDeduction() {

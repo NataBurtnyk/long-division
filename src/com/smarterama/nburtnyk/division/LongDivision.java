@@ -31,32 +31,39 @@ public class LongDivision {
 		List<DivisionStep> steps = buildDivisionSteps();
 		List<String> output = buildOutputHeader(steps);
 		int shift = 0;
-	
+		
+		// Processing all steps and creating list of strings for output. Create
+		// result string.
 		boolean firstStep = true;
 		for (DivisionStep step : steps) {
 			List<String> stepOutput = step.shapeOutput();
+			
 			if (!firstStep) {
 				String shiftString = repeatString(" ", shift);
 				for (String line : stepOutput) {
 					output.add(shiftString + line);
 				}
 			}
-			shift += Integer.toString(step.getDeduction()).length();
-			if (step.getDifference() > 0){
-				shift -= Integer.toString(step.getDifference()).length();
+
+			shift += ("" + step.getDeduction()).length();
+			if (step.getDifference() > 0) {
+				shift -= ("" + step.getDifference()).length();
 			}
 			firstStep = false;
 		}
+		
+		// Add last difference.
 		if (!steps.isEmpty()) {
 			DivisionStep lastStep = steps.get(steps.size() - 1);
-			String difference = Integer.toString(lastStep.getDifference());
+			String difference = "" + lastStep.getDifference();
 			shift++;
+			
 			if (lastStep.getDifference() == 0) {
 				if (lastStep.getNewDividend() == 0) {
 					shift--;
 				}
 				else {
-					difference = Integer.toString(lastStep.getNewDividend());
+					difference = "" + lastStep.getNewDividend();
 				}
 			}
 			output.add(repeatString(" ", shift) + difference);
@@ -64,9 +71,11 @@ public class LongDivision {
 		return output;
 	}
 	
+	
 	private String repeatString(String s, Integer n) {
 		return new String(new char[n]).replace("\0", s);
 	}
+	
 	
 	private List<DivisionStep> buildDivisionSteps() {
 		List<DivisionStep> divisionSteps = new ArrayList<DivisionStep>();
@@ -76,13 +85,16 @@ public class LongDivision {
 		while (currentDividend >= Math.abs(divisor)) {
 			DivisionStep step = new DivisionStep(currentDividend, Math.abs(divisor));
 			currentDividend = step.getNewDividend();
-			result += step.getPartResult();
+			result += step.getOneDigitFromFraction();
 			divisionSteps.add(step);
 		}
+		
 		if (!result.isEmpty()) {
+			// Add 0 to the end, if there is a reminder.
 			DivisionStep lastStep = divisionSteps.get(divisionSteps.size() - 1);
-			if (lastStep.getDifference() == 0 && lastStep.getNewDividend() != 0)
+			if (lastStep.getDifference() == 0 && lastStep.getNewDividend() != 0){
 				result += "0";
+			}
 			result = findResultSign() + result;
 		}
 		else
