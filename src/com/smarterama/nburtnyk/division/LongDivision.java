@@ -47,7 +47,7 @@ public class LongDivision {
 			}
 			firstStep = false;
 		}
-		if (steps.size() > 0) {
+		if (!steps.isEmpty()) {
 			DivisionStep lastStep = steps.get(steps.size() - 1);
 			String difference = Integer.toString(lastStep.getDifference());
 			shift++;
@@ -79,7 +79,7 @@ public class LongDivision {
 			result += step.getPartResult();
 			divisionSteps.add(step);
 		}
-		if (result.length() > 0) {
+		if (!result.isEmpty()) {
 			DivisionStep lastStep = divisionSteps.get(divisionSteps.size() - 1);
 			if (lastStep.getDifference() == 0 && lastStep.getNewDividend() != 0)
 				result += "0";
@@ -90,40 +90,37 @@ public class LongDivision {
 		return divisionSteps;
 	}
 	
+	
 	private String findResultSign() {
 		return (dividend / divisor) < 0 ? "-": "";
 	}
+	
 	
 	private List<String> buildOutputHeader(List<DivisionStep> steps) {
 		List<String> output = new ArrayList<String>();
 		int headerRows = 3;
 		List<String> firstStepOutput;
-		String[] rows = { "", "", "" };
-				
-		if (steps.size() > 0) {
-			firstStepOutput = steps.get(0).shapeOutput();
-			for (int i = 0; i < headerRows; i++) {
-				rows[i] = firstStepOutput.get(i);
-			}
-		}
-		
-		rows[0] = (dividend > 0 && steps.size() > 0 ? " " : "") + "" + dividend;
-		int rowLength = Math.max(rows[0].length(), rows[2].length()) + 1;
 
-		for (int i = 0; i < headerRows; i++) {
-			rows[i] += repeatString(" ", rowLength - rows[i].length()) + "|";
+		String firstRow = (dividend > 0 && steps.size() > 0 ? " " : "") + dividend + " |" + divisor;
+		String secondRow;
+		String thirdRow;
+		
+		dividend = Math.abs(dividend);
+	
+		if(!steps.isEmpty()) {
+			secondRow = "-" + ("" + dividend).replaceAll("[0-9]", " ") + " |" + result.replaceAll("[0-9]", "-");
+			thirdRow = " " + steps.get(0).getMinuend() + ("" + dividend).replaceAll("[0-9]", " ") + "|" + result;
+		} else {
+			secondRow = ("" + dividend).replaceAll("[0-9]", " ") + " |" + ("" + divisor).replaceAll("[0-9]", "-");
+			thirdRow = (" " + dividend).replaceAll("[0-9]", " ") + "|" + result;
 		}
 		
-		rows[0] += "" + divisor;
-		rows[2] += result;
-		int splitterHorizontalLineLenght = Math.max(result.length(), String.valueOf(Math.abs(divisor)).length());
-		rows[1] += repeatString("-", splitterHorizontalLineLenght);
+		output.add(firstRow);
+		output.add(secondRow);
+		output.add(thirdRow);
 		
-		for (int i = 0; i < headerRows; i++) {
-			output.add(rows[i]);
-		}
 		
-		if (steps.size() > 0) {
+		if (!steps.isEmpty()) {
 			firstStepOutput = steps.get(0).shapeOutput();
 			output.add(firstStepOutput.get(headerRows));
 		}
