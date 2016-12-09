@@ -9,7 +9,7 @@ public class LongDivision {
 	private int divisor;
 	private String result;
 	
-	public static final int headerRows  = 3;
+	private static final int headerRows  = 3;
 	
 	public LongDivision(int dividend, int divisor) {
 		this.dividend = dividend;
@@ -28,7 +28,7 @@ public class LongDivision {
 		}
 	}
 		
-	public List<String> longDivision() {
+	public List<String> divideTwoNumbers() {
 		checkDivisor(divisor);
 		List<DivisionStep> steps = buildDivisionSteps();
 		List<String> output = buildOutputHeader(steps);
@@ -139,5 +139,4 @@ public class LongDivision {
 		
 		return output;
 	}
-	
 }

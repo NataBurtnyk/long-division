@@ -13,7 +13,7 @@ public class DivisionStep {
 	private int difference;
 	private int newDividend;
 	
-	public static final int foundationDigitOrder  = 10;
+	private static final int foundationDigitOrder  = 10;
 	
 	public DivisionStep(int dividend, int divisor) {
 		this.dividend = Math.abs(dividend);
