@@ -7,11 +7,13 @@ public class DivisionStep {
 	
 	private int dividend;
 	private int divisor;
-	private int OneDigitFromFraction;
+	private int oneDigitFromFraction;
 	private int deduction;
 	private int minuend;
 	private int difference;
 	private int newDividend;
+	
+	public static final int foundationDigitOrder  = 10;
 	
 	public DivisionStep(int dividend, int divisor) {
 		this.dividend = Math.abs(dividend);
@@ -21,10 +23,10 @@ public class DivisionStep {
 	
 	private void countStepValues() {
 		deduction = findDeduction(dividend, divisor);
-		OneDigitFromFraction = deduction / divisor;
-		minuend = divisor * OneDigitFromFraction;
+		oneDigitFromFraction = deduction / divisor;
+		minuend = divisor * oneDigitFromFraction;
 		difference = deduction - minuend;
-		newDividend = findNextDividend(dividend, OneDigitFromFraction * divisor);
+		newDividend = findNextDividend(dividend, oneDigitFromFraction * divisor);
 	}
 	
 	private int findDeduction(int dividend, int divisor) {
@@ -38,7 +40,7 @@ public class DivisionStep {
 	
 	private int findNextDividend(int dividend, int deduction) {
 		while(findNumberLength(dividend) != findNumberLength(deduction)){
-			deduction *= 10;
+			deduction *= foundationDigitOrder;
 		}
 		return dividend - deduction;
 
@@ -48,19 +50,19 @@ public class DivisionStep {
 		 int count = (number == 0) ? 1 : 0;
 	        while (number != 0) {
 	            count++;
-	            number /= 10;
+	            number /= foundationDigitOrder;
 	        }
 	        return count;
 	    }
 	
 	private int findFirstNDigits(int number, int n) {
 		while(findNumberLength(number) != n){
-			number /= 10;
+			number /= foundationDigitOrder;
 		}
 		return number;
 	}
 	
-	public List<String> shapeOutput() {
+	public List<String> formatOutput() {
 		List<String> output = new ArrayList<String>();
 		int numberLength = findNumberLength(deduction);
 		output.add(" " + deduction);
@@ -71,7 +73,7 @@ public class DivisionStep {
 	}
 	
 	public int getOneDigitFromFraction() {
-		return OneDigitFromFraction;
+		return oneDigitFromFraction;
 	}
 	
 	public int getDeduction() {

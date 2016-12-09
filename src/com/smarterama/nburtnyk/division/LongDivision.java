@@ -9,6 +9,8 @@ public class LongDivision {
 	private int divisor;
 	private String result;
 	
+	public static final int headerRows  = 3;
+	
 	public LongDivision(int dividend, int divisor) {
 		this.dividend = dividend;
 		this.divisor = divisor;
@@ -26,17 +28,17 @@ public class LongDivision {
 		}
 	}
 		
-	public List<String> buildOutputStrings() {
+	public List<String> longDivision() {
 		checkDivisor(divisor);
 		List<DivisionStep> steps = buildDivisionSteps();
 		List<String> output = buildOutputHeader(steps);
 		int shift = 0;
 		
-		// Processing all steps and creating list of strings for output. Create
-		// result string.
+		// Processing all steps and creating list of strings for output.
+		// Create result string.
 		boolean firstStep = true;
 		for (DivisionStep step : steps) {
-			List<String> stepOutput = step.shapeOutput();
+			List<String> stepOutput = step.formatOutput();
 			
 			if (!firstStep) {
 				String shiftString = repeatString(" ", shift);
@@ -57,7 +59,6 @@ public class LongDivision {
 			DivisionStep lastStep = steps.get(steps.size() - 1);
 			String difference = "" + lastStep.getDifference();
 			shift++;
-			
 			if (lastStep.getDifference() == 0) {
 				if (lastStep.getNewDividend() == 0) {
 					shift--;
@@ -110,7 +111,6 @@ public class LongDivision {
 	
 	private List<String> buildOutputHeader(List<DivisionStep> steps) {
 		List<String> output = new ArrayList<String>();
-		int headerRows = 3;
 		List<String> firstStepOutput;
 
 		String firstRow = (dividend > 0 && steps.size() > 0 ? " " : "") + dividend + " |" + divisor;
@@ -133,7 +133,7 @@ public class LongDivision {
 		
 		
 		if (!steps.isEmpty()) {
-			firstStepOutput = steps.get(0).shapeOutput();
+			firstStepOutput = steps.get(0).formatOutput();
 			output.add(firstStepOutput.get(headerRows));
 		}
 		
