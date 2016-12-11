@@ -104,11 +104,9 @@ public class LongDivision {
 		return divisionSteps;
 	}
 	
-	
 	private String findResultSign() {
 		return (dividend / divisor) < 0 ? "-": "";
 	}
-	
 	
 	private String buildOutputHeader(List<DivisionStep> steps) {
 		List<String> firstStepOutput;
@@ -118,14 +116,12 @@ public class LongDivision {
 		if(!steps.isEmpty()) {
 			header+= "-" + ("" + dividend).replaceAll("[0-9]", " ") + " |" + result.replaceAll("[0-9]", "-") + "\n" ;
 			header+= " " + steps.get(0).getMinuend() + ("" + dividend).replaceAll("[0-9]", " ") + "|" + result + "\n";
+			
+			firstStepOutput = steps.get(0).formatOutput();
+			header += firstStepOutput.get(headerRows);
 		} else {
 			header+= ("" + dividend).replaceAll("[0-9]", " ") + " |" + ("" + divisor).replaceAll("[0-9]", "-") + "\n";
 			header+= (" " + dividend).replaceAll("[0-9]", " ") + "|" + result + "\n";
-		}
-			
-		if (!steps.isEmpty()) {
-			firstStepOutput = steps.get(0).formatOutput();
-			header += firstStepOutput.get(headerRows);
 		}
 		
 		return header;

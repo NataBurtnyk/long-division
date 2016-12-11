@@ -25,7 +25,7 @@ public class LongDivisionTest {
 		LongDivision longDivision = new LongDivision(78459, 4);
 		List<String> outputStrings = longDivision.divideTwoNumbers();
 		String[] expectedOutput = new String[]{
- 				" 78459 |4" + "\n"+
+ 				" 78459 |4" + "\n" +
  				"-      |-----" + "\n" +
  				" 4     |19614" + "\n" + 
  				" -",
@@ -58,9 +58,9 @@ public class LongDivisionTest {
 		LongDivision longDivision = new LongDivision(36, 3);
 		List<String> outputStrings = longDivision.divideTwoNumbers();
 		String[] expectedOutput = new String[]{
- 				" 36 |3" + "\n"+
- 				"-   |--" + "\n"+
- 				" 3  |12" + "\n"+
+ 				" 36 |3" + "\n" +
+ 				"-   |--" + "\n" +
+ 				" 3  |12" + "\n" +
  				" -",
  				"  6",
  				" -",
@@ -79,9 +79,9 @@ public class LongDivisionTest {
 		LongDivision longDivision = new LongDivision(68, -4);
 		List<String> outputStrings = longDivision.divideTwoNumbers();
 		String[] expectedOutput = new String[]{
- 				" 68 |-4" + "\n"+
- 				"-   |---" + "\n"+
- 				" 4  |-17" + "\n"+
+ 				" 68 |-4" + "\n" +
+ 				"-   |---" + "\n" +
+ 				" 4  |-17" + "\n" +
  				" -",
  				" 28",
  				"-",
@@ -100,9 +100,9 @@ public class LongDivisionTest {
 		LongDivision longDivision = new LongDivision(-968, -4);
 		List<String> outputStrings = longDivision.divideTwoNumbers();
 		String[] expectedOutput = new String[]{
- 				"-968 |-4" + "\n"+
- 				"-    |---" + "\n"+
- 				" 8   |242" + "\n"+
+ 				"-968 |-4" + "\n" +
+ 				"-    |---" + "\n" +
+ 				" 8   |242" + "\n" +
  				" -",
  				" 16",
  				"-",
@@ -125,8 +125,8 @@ public class LongDivisionTest {
 		LongDivision longDivision = new LongDivision(0, 8);
 		List<String> outputStrings = longDivision.divideTwoNumbers();
 		String[] expectedOutput = new String[]{
- 				"0 |8" + "\n"+
- 				"  |-" + "\n"+
+ 				"0 |8" + "\n" +
+ 				"  |-" + "\n" +
  				"  |0" + "\n"};
 		
 		for (int i = 0; i < expectedOutput.length; i++) {
@@ -140,8 +140,8 @@ public class LongDivisionTest {
 		LongDivision longDivision = new LongDivision(8, 20);
 		List<String> outputStrings = longDivision.divideTwoNumbers();
 		String[] expectedOutput = new String[]{
- 				"8 |20" + "\n"+
- 				"  |--" + "\n"+
+ 				"8 |20" + "\n" +
+ 				"  |--" + "\n" +
  				"  |0" + "\n"};
 		
 		for (int i = 0; i < expectedOutput.length; i++) {
