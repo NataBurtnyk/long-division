@@ -31,7 +31,8 @@ public class LongDivision {
 	public List<String> divideTwoNumbers() {
 		checkDivisor(divisor);
 		List<DivisionStep> steps = buildDivisionSteps();
-		List<String> output = buildOutputHeader(steps);
+		List<String> output = new ArrayList<String>(); 
+		output.add(buildOutputHeader(steps));
 		int shift = 0;
 		
 		// Processing all steps and creating list of strings for output.
@@ -109,34 +110,24 @@ public class LongDivision {
 	}
 	
 	
-	private List<String> buildOutputHeader(List<DivisionStep> steps) {
-		List<String> output = new ArrayList<String>();
+	private String buildOutputHeader(List<DivisionStep> steps) {
 		List<String> firstStepOutput;
-
-		String firstRow = (dividend > 0 && steps.size() > 0 ? " " : "") + dividend + " |" + divisor;
-		String secondRow;
-		String thirdRow;
-		
+		String header = (dividend > 0 && steps.size() > 0 ? " " : "") + dividend + " |" + divisor + "\n";
 		dividend = Math.abs(dividend);
 	
 		if(!steps.isEmpty()) {
-			secondRow = "-" + ("" + dividend).replaceAll("[0-9]", " ") + " |" + result.replaceAll("[0-9]", "-");
-			thirdRow = " " + steps.get(0).getMinuend() + ("" + dividend).replaceAll("[0-9]", " ") + "|" + result;
+			header+= "-" + ("" + dividend).replaceAll("[0-9]", " ") + " |" + result.replaceAll("[0-9]", "-") + "\n" ;
+			header+= " " + steps.get(0).getMinuend() + ("" + dividend).replaceAll("[0-9]", " ") + "|" + result + "\n";
 		} else {
-			secondRow = ("" + dividend).replaceAll("[0-9]", " ") + " |" + ("" + divisor).replaceAll("[0-9]", "-");
-			thirdRow = (" " + dividend).replaceAll("[0-9]", " ") + "|" + result;
+			header+= ("" + dividend).replaceAll("[0-9]", " ") + " |" + ("" + divisor).replaceAll("[0-9]", "-") + "\n";
+			header+= (" " + dividend).replaceAll("[0-9]", " ") + "|" + result + "\n";
 		}
-		
-		output.add(firstRow);
-		output.add(secondRow);
-		output.add(thirdRow);
-		
-		
+			
 		if (!steps.isEmpty()) {
 			firstStepOutput = steps.get(0).formatOutput();
-			output.add(firstStepOutput.get(headerRows));
+			header += firstStepOutput.get(headerRows);
 		}
 		
-		return output;
+		return header;
 	}
 }
