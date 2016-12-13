@@ -17,138 +17,118 @@ public class LongDivisionTest {
 	public void testConditionWithDivisorZero() {
 		exception.expect(IllegalArgumentException.class);
 		exception.expectMessage("Divisor can not be 0");
-		new LongDivision(744, 0).divideTwoNumbers();
+		new LongDivision(744, 0).divide();
 	}
 	
 	@Test
 	public void testConditionWithDigitsLikeInTask() {
 		LongDivision longDivision = new LongDivision(78459, 4);
-		List<String> outputStrings = longDivision.divideTwoNumbers();
-		String[] expectedOutput = new String[]{
- 				" 78459 |4" + "\n" +
+		String outputStrings = longDivision.divide();
+		String expectedOutput = 
+ 				" 78459 |4"     + "\n" +
  				"-      |-----" + "\n" +
  				" 4     |19614" + "\n" + 
- 				" -",
- 				" 38",
- 				"-",
- 				" 36",
- 				" --",
- 				"  24",
- 				" -",
- 				"  24",
- 				"  --",
- 				"    5",
- 				"   -",
- 				"    4",
- 				"    -",
- 				"    19",
- 				"   -",
- 				"    16",
- 				"    --",
- 				"     3"};
-		
-		for (int i = 0; i < expectedOutput.length; i++) {
- 			assertEquals(expectedOutput[i], outputStrings.get(i));	
-		}
-		
+ 				" -"      + "\n" +
+ 				" 38"     + "\n" +
+ 				"-"       + "\n" +
+ 				" 36"     + "\n" +
+ 				" --"     + "\n" +
+ 				"  24"    + "\n" +
+ 				" -"      + "\n" +
+ 				"  24"    + "\n" +
+ 				"  --"    + "\n" +
+ 				"    5"   + "\n" +
+ 				"   -"    + "\n" +
+ 				"    4"   + "\n" +
+ 				"    -"   + "\n" +
+ 				"    19"  + "\n" +
+ 				"   -"    + "\n" +
+ 				"    16"  + "\n" +
+ 				"    --"  + "\n" +
+ 				"     3";
+
+ 			assertEquals(expectedOutput, outputStrings);	
 	}
 	
 	@Test
 	public void testConditionWithDigits() {
 		LongDivision longDivision = new LongDivision(36, 3);
-		List<String> outputStrings = longDivision.divideTwoNumbers();
-		String[] expectedOutput = new String[]{
- 				" 36 |3" + "\n" +
+		String outputStrings = longDivision.divide();
+		String expectedOutput = 
+ 				" 36 |3"  + "\n" +
  				"-   |--" + "\n" +
  				" 3  |12" + "\n" +
- 				" -",
- 				"  6",
- 				" -",
- 				"  6",
- 				"  -",
- 				"  0"};
+ 				" -"      + "\n" +
+ 				"  6"     + "\n" +
+ 				" -"      + "\n" +
+ 				"  6"     + "\n" +
+ 				"  -"     + "\n" +
+ 				"  0";
 		
-		for (int i = 0; i < expectedOutput.length; i++) {
- 			assertEquals(expectedOutput[i], outputStrings.get(i));	
-		}
-		
+ 			assertEquals(expectedOutput, outputStrings);
 	}
 	
 	@Test
 	public void testConditionWithNegativeDivisor() {
 		LongDivision longDivision = new LongDivision(68, -4);
-		List<String> outputStrings = longDivision.divideTwoNumbers();
-		String[] expectedOutput = new String[]{
- 				" 68 |-4" + "\n" +
+		String outputStrings = longDivision.divide();
+		String expectedOutput = 
+ 				" 68 |-4"  + "\n" +
  				"-   |---" + "\n" +
  				" 4  |-17" + "\n" +
- 				" -",
- 				" 28",
- 				"-",
- 				" 28",
- 				" --",
- 				"  0"};
+ 				" -"       + "\n" +
+ 				" 28"      + "\n" +
+ 				"-"        + "\n" +
+ 				" 28"      + "\n" +
+ 				" --"      + "\n" +
+ 				"  0";
 		
-		for (int i = 0; i < expectedOutput.length; i++) {
- 			assertEquals(expectedOutput[i], outputStrings.get(i));	
-		}
-		
+ 			assertEquals(expectedOutput, outputStrings);	
 	}
 	
 	@Test
 	public void testConditionWithNegativeDigits() {
 		LongDivision longDivision = new LongDivision(-968, -4);
-		List<String> outputStrings = longDivision.divideTwoNumbers();
-		String[] expectedOutput = new String[]{
- 				"-968 |-4" + "\n" +
+		String outputStrings = longDivision.divide();
+		String expectedOutput =
+ 				"-968 |-4"  + "\n" +
  				"-    |---" + "\n" +
  				" 8   |242" + "\n" +
- 				" -",
- 				" 16",
- 				"-",
- 				" 16",
- 				" --",
- 				"   8",
- 				"  -",
- 				"   8",
- 				"   -",
- 				"   0"};
-		
-		for (int i = 0; i < expectedOutput.length; i++) {
- 			assertEquals(expectedOutput[i], outputStrings.get(i));	
-		}
-		
+ 				" -"        + "\n" +
+ 				" 16"       + "\n" +
+ 				"-"         + "\n" +
+ 				" 16"       + "\n" +
+ 				" --"       + "\n" +
+ 				"   8"      + "\n" +
+ 				"  -"       + "\n" +
+ 				"   8"      + "\n" +
+ 				"   -"      + "\n" +
+ 				"   0";
+	
+ 			assertEquals(expectedOutput, outputStrings);	
 	}
 	
 	@Test
 	public void testConditionWithDividendZero() {
 		LongDivision longDivision = new LongDivision(0, 8);
-		List<String> outputStrings = longDivision.divideTwoNumbers();
-		String[] expectedOutput = new String[]{
+		String outputStrings = longDivision.divide();
+		String expectedOutput =
  				"0 |8" + "\n" +
  				"  |-" + "\n" +
- 				"  |0" + "\n"};
+ 				"  |0" + "\n";
 		
-		for (int i = 0; i < expectedOutput.length; i++) {
- 			assertEquals(expectedOutput[i], outputStrings.get(i));	
-		}
-		
+ 			assertEquals(expectedOutput, outputStrings);	
 	}
 	
 	@Test
 	public void testConditionWhenDivisorLargerThanDividend() {
 		LongDivision longDivision = new LongDivision(8, 20);
-		List<String> outputStrings = longDivision.divideTwoNumbers();
-		String[] expectedOutput = new String[]{
+		String outputStrings = longDivision.divide();
+		String expectedOutput = 
  				"8 |20" + "\n" +
  				"  |--" + "\n" +
- 				"  |0" + "\n"};
-		
-		for (int i = 0; i < expectedOutput.length; i++) {
- 			assertEquals(expectedOutput[i], outputStrings.get(i));	
-		}
-		
+ 				"  |0"  + "\n";
+	
+ 			assertEquals(expectedOutput, outputStrings);		
 	}
-	
-	
 }

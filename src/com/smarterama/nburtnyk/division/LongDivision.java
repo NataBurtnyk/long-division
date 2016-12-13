@@ -9,7 +9,7 @@ public class LongDivision {
 	private int divisor;
 	private String result;
 	
-	private static final int headerRows  = 3;
+	private static final int HEADER_ROWS  = 3;
 	
 	public LongDivision(int dividend, int divisor) {
 		this.dividend = dividend;
@@ -22,17 +22,15 @@ public class LongDivision {
 		}
 	}
 	
-	public void print(List<String> divisionSteps) {
-		for (String line : divisionSteps) {
-			System.out.println(line);
-		}
+	public void print(String divisionSteps) {
+			System.out.println(divisionSteps);
 	}
 		
-	public List<String> divideTwoNumbers() {
+	public String divide() {
 		checkDivisor(divisor);
 		List<DivisionStep> steps = buildDivisionSteps();
-		List<String> output = new ArrayList<String>(); 
-		output.add(buildOutputHeader(steps));
+		String output = buildOutputHeader(steps) + "\n"; 
+		
 		int shift = 0;
 		
 		// Processing all steps and creating list of strings for output.
@@ -44,7 +42,7 @@ public class LongDivision {
 			if (!firstStep) {
 				String shiftString = repeatString(" ", shift);
 				for (String line : stepOutput) {
-					output.add(shiftString + line);
+					output += shiftString + line + "\n";
 				}
 			}
 
@@ -68,7 +66,7 @@ public class LongDivision {
 					difference = "" + lastStep.getNewDividend();
 				}
 			}
-			output.add(repeatString(" ", shift) + difference);
+			output += repeatString(" ", shift) + difference;
 		}
 		return output;
 	}
@@ -118,10 +116,10 @@ public class LongDivision {
 			header+= " " + steps.get(0).getMinuend() + ("" + dividend).replaceAll("[0-9]", " ") + "|" + result + "\n";
 			
 			firstStepOutput = steps.get(0).formatOutput();
-			header += firstStepOutput.get(headerRows);
+			header += firstStepOutput.get(HEADER_ROWS);
 		} else {
 			header+= ("" + dividend).replaceAll("[0-9]", " ") + " |" + ("" + divisor).replaceAll("[0-9]", "-") + "\n";
-			header+= (" " + dividend).replaceAll("[0-9]", " ") + "|" + result + "\n";
+			header+= (" " + dividend).replaceAll("[0-9]", " ") + "|" + result;
 		}
 		
 		return header;
