@@ -30,7 +30,6 @@ public class LongDivision {
 		checkDivisor(divisor);
 		List<DivisionStep> steps = buildDivisionSteps();
 		String output = buildOutputHeader(steps) + "\n"; 
-		
 		int shift = 0;
 		
 		// Processing all steps and creating list of strings for output.
